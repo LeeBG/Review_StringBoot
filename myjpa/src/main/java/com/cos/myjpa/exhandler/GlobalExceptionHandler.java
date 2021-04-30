@@ -12,7 +12,12 @@ import com.cos.myjpa.web.dto.CommonRespDto;
 public class GlobalExceptionHandler {
 	//그 중 IllegalArgumentException 이 발생하면 해당 함수 실행됨.
 	@ExceptionHandler(value=DataIntegrityViolationException.class)
-	public CommonRespDto<?> wlongArgument(Exception e){
+	public CommonRespDto<?> dataIntegrityViolation(Exception e){
+		return new CommonRespDto<>(-1,e.getMessage(),null);
+	}
+	
+	@ExceptionHandler(value=IllegalArgumentException.class)
+	public CommonRespDto<?> illegalArgument(Exception e){
 		return new CommonRespDto<>(-1,e.getMessage(),null);
 	}
 }
