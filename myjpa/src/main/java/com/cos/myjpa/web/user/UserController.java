@@ -2,6 +2,7 @@ package com.cos.myjpa.web.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.cos.myjpa.web.user.dto.UserLoginReqDto;
 
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin
 @RequiredArgsConstructor		//자동으로 생성자를 만들어줌
 @RestController
 public class UserController {
@@ -54,7 +56,6 @@ public class UserController {
 			User userEntity = userRepository.findById(id).get();
 			return new CommonRespDto<>(1,"유저정보보기 성공",userEntity);
 		}
-		
 	}
 	
 }
