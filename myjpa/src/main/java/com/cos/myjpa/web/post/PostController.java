@@ -34,7 +34,6 @@ public class PostController {
 	public CommonRespDto<?> save(@RequestBody PostSaveReqDto postSaveReqDto) { // title, content
 		
 		User principal = (User) session.getAttribute("principal");
-		
 		if (principal == null) { // 로그인 안돼있을 시 나중에 AOP처리
 			return new CommonRespDto<>(-1, "실패", null);
 		}
@@ -54,6 +53,6 @@ public class PostController {
 		Post postEntity = postRepository.findById(id).orElseThrow(()->{
 			return new IllegalArgumentException("id를 찾을 수 없습니다.");
 		});
-		return new CommonRespDto<>(1,"성공,",postEntity);
+		return new CommonRespDto<>(1,"성공,",postEntity); //MessageConverter가 모든 getter를 다 호출해서 JSON으로 만들어준다.
 	}
 }
