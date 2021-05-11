@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.cos.myjpa.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,13 +41,12 @@ public class Post {
 	private String content;
 	
 	//누가 적었는지 N(게시글) To 1(User)
-	@ManyToOne	//연관관계 맺는 법, FK의 주인인 곳에서 적어야함
+	@ManyToOne(fetch = FetchType.LAZY)	//연관관계 맺는 법, FK의 주인인 곳에서 적어야함
 	@JoinColumn(name = "userId")	//DB테이블에는 userId
+	@JsonIgnoreProperties({"posts"})
 	private User user;
 	//naming 전략이 user_id - application.yml에서 전략을 수정해 줘야함
-	
-	
-	
+
 	@CreationTimestamp
-	private LocalDateTime createDate;
+	private LocalDateTime createDate;		//실시간 DB저장
 }

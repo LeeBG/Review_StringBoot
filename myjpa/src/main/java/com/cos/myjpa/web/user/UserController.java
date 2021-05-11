@@ -47,7 +47,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/test/user/{id}")//유저정보보기 - 세션이 정확히 들어갔는지 아닌지
+	@GetMapping("/user/{id}")//유저정보보기 - 세션이 정확히 들어갔는지 아닌지
 	public CommonRespDto<?> userInfo(@PathVariable Long id){
 		User principal = (User)session.getAttribute("principal");
 		if(principal == null) {

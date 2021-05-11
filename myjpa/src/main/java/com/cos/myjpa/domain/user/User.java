@@ -1,11 +1,14 @@
 package com.cos.myjpa.domain.user;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
@@ -34,5 +37,7 @@ public class User {
 	@CreationTimestamp
 	private LocalDateTime createDate;
 	
+	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+	private List<Post> posts;
 	
 }

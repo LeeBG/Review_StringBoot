@@ -25,13 +25,13 @@ public class TestController {
 	private final PostRepository postRepository;	//의존성 주입
 	
 	@PostMapping("/test/post") //Body 데이터를 들고 올 수 있음http body = 데이터타입이 JSON
-	public CommonRespDto<?> Save(@RequestBody PostSaveReqDto postSaveReqDto) { // title, content 
+	public CommonRespDto<?> save(@RequestBody PostSaveReqDto postSaveReqDto) { // title, content 
 		//원래는 세션값을 넣어야 함.
-		User user = new User(1L,"ssar","1234","ssar@nate.com",LocalDateTime.now());
+		//User user = new User(1L,"ssar","1234","ssar@nate.com",LocalDateTime.now());
 		
 		Post postEntity = postRepository.save(postSaveReqDto.toEntity());
 		//postEntity는 DB에서 들고온 데이터
-		postEntity.setUser(user);
+		//postEntity.setUser(user);
 		return new CommonRespDto<>(1,"성공",postEntity);	//실패 하면 내부적으로 무조건 exception을 탄다.
 	}
 	
