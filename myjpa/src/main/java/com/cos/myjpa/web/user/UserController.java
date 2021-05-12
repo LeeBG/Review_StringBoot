@@ -1,5 +1,9 @@
 package com.cos.myjpa.web.user;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cos.myjpa.domain.user.User;
 import com.cos.myjpa.domain.user.UserRepository;
+import com.cos.myjpa.service.UserService;
 import com.cos.myjpa.web.dto.CommonRespDto;
 import com.cos.myjpa.web.user.dto.UserJoinReqDto;
 import com.cos.myjpa.web.user.dto.UserLoginReqDto;
+import com.cos.myjpa.web.user.dto.UserRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +29,12 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	private final UserRepository userRepository;
 	private final HttpSession session;//tomcat이 들고있는 객체 오브젝트는 IoC에 다 들어가 있다.
+	private final UserService userService;
+	
+	@GetMapping("/user")
+	public CommonRespDto<?> findAll(){
+		return new CommonRespDto<>(1,"성공",userService.전체찾기());
+	}
 	
 	@PostMapping("/join")	//회원가입  //Json으로 받을것이다.
 	public CommonRespDto<?> join(@RequestBody UserJoinReqDto userJoinReqDto){

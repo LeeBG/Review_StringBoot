@@ -1,15 +1,10 @@
 package com.cos.myjpa.web.post;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +17,9 @@ import com.cos.myjpa.domain.post.Post;
 import com.cos.myjpa.domain.post.PostRepository;
 import com.cos.myjpa.domain.user.User;
 import com.cos.myjpa.web.dto.CommonRespDto;
+import com.cos.myjpa.web.post.dto.PostRespDto;
 import com.cos.myjpa.web.post.dto.PostSaveReqDto;
 import com.cos.myjpa.web.post.dto.PostUpdateReqDto;
-import com.google.gson.Gson;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,6 +29,8 @@ import lombok.RequiredArgsConstructor;
  * 맺음) JPA = 자바 오브젝트를 영구적으로 저장하기 위한 인터페이스(함수)
  * 
  */
+//컨트롤러의 역할은 request받아서 response해주는 것만 있으면 된다.
+
 @RequiredArgsConstructor
 @RestController
 public class PostController {
@@ -64,7 +61,10 @@ public class PostController {
 		Post postEntity = postRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("id를 찾을 수 없습니다.");
 		});
-		return new CommonRespDto<>(1, "성공,", postEntity); // MessageConverter가 모든 getter를 다 호출해서 JSON으로 만들어준다.
+		
+		PostRespDto postRespDto = new PostRespDto(postEntity);
+		
+		return new CommonRespDto<>(1, "성공,", postRespDto); // MessageConverter가 모든 getter를 다 호출해서 JSON으로 만들어준다.
 	}
 
 	// 전체찾기

@@ -14,6 +14,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 
 import com.cos.myjpa.domain.post.Post;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +38,9 @@ public class User {
 	@CreationTimestamp
 	private LocalDateTime createDate;
 	
-	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+	//역방향 매핑
+	@JsonIgnoreProperties({"user"})
+	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
 	private List<Post> posts;
 	
 }
