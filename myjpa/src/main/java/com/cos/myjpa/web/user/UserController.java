@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class UserController {
 	private final UserRepository userRepository;
-	private final HttpSession session;//tomcat이 들고있는 객체 오브젝트는 IoC에 다 들어가 있다.
+	private final HttpSession session;				//tomcat이 들고있는 객체 오브젝트는 IoC에 다 들어가 있다.
 	private final UserService userService;
 	
 	@GetMapping("/user")
@@ -36,15 +36,26 @@ public class UserController {
 		return new CommonRespDto<>(1,"성공",userService.전체찾기());
 	}
 	
+	@GetMapping("/user/{id}")				//유저한건 찾기
+	public CommonRespDto<?> userInfo(@PathVariable Long id){
+		return new CommonRespDto<>(1, "성공", userService.한건찾기(id));
+	}
+	@GetMapping("/user/{id}/post")				//유저한명의 post모두
+	public CommonRespDto<?> profile(@PathVariable Long id){
+		return new CommonRespDto<>(1, "성공", userService.프로파일(id));
+	}
+	
+	
 	@PostMapping("/join")	//회원가입  //Json으로 받을것이다.
 	public CommonRespDto<?> join(@RequestBody UserJoinReqDto userJoinReqDto){
-		User userEntity = userRepository.save(userJoinReqDto.toEntity());
-		return new CommonRespDto<>(1,"회원가입 성공",userEntity);
+		
+		return new CommonRespDto<>(1,"회원가입 성공",userService.회원가입(userJoinReqDto));
 	}
 	
 	@PostMapping("/login")
 	public CommonRespDto<?> login(@RequestBody UserLoginReqDto userLoginReqDto/*,HttpSession session*/){//파라미터로 주입도 가능
-		User userEntity = userRepository.findByUsernameAndPassword(userLoginReqDto.getUsername(), userLoginReqDto.getPassword());
+		User userEntity = userService.로그인(userLoginReqDto);
+		//나중에 AOP처리
 		if(userEntity==null) {
 			return new CommonRespDto<>(-1,"로그인 실패",null);
 		}else {
@@ -56,17 +67,6 @@ public class UserController {
 			userEntity.setPassword(null);		//위험하니까  null로 준다.
 			session.setAttribute("principal", userEntity);
 			return new CommonRespDto<>(1,"로그인 성공",userEntity);
-		}
-	}
-	
-	@GetMapping("/user/{id}")//유저정보보기 - 세션이 정확히 들어갔는지 아닌지
-	public CommonRespDto<?> userInfo(@PathVariable Long id){
-		User principal = (User)session.getAttribute("principal");
-		if(principal == null) {
-			return new CommonRespDto<>(-1,"유저정보보기 실패",null);
-		}else {
-			User userEntity = userRepository.findById(id).get();
-			return new CommonRespDto<>(1,"유저정보보기 성공",userEntity);
 		}
 	}
 	

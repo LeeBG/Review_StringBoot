@@ -1,6 +1,7 @@
 package com.cos.myjpa.handler;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,11 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(value=IllegalArgumentException.class)
 	public CommonRespDto<?> illegalArgument(Exception e){
+		return new CommonRespDto<>(-1,e.getMessage(),null);
+	}
+	
+	@ExceptionHandler(value=EmptyResultDataAccessException.class)
+	public CommonRespDto<?> emptyResultDataAccess(Exception e){
 		return new CommonRespDto<>(-1,e.getMessage(),null);
 	}
 }

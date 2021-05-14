@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.myjpa.domain.user.User;
 import com.cos.myjpa.domain.user.UserRepository;
 import com.cos.myjpa.web.dto.CommonRespDto;
+import com.cos.myjpa.web.user.dto.UserJoinReqDto;
+import com.cos.myjpa.web.user.dto.UserLoginReqDto;
 import com.cos.myjpa.web.user.dto.UserRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ public class UserService {
 	
 	private UserRepository userRepository;	//DI
 	
+	@Transactional(readOnly = true)
 	public List<UserRespDto> 전체찾기() {
 		List<User>  usersEntity= userRepository.findAll();
 		//forEach
@@ -30,21 +34,36 @@ public class UserService {
 		}
 		return userRespDtos;
 	}
-
-	public void 한건찾기() {
-
+	
+	@Transactional(readOnly = true)
+	public UserRespDto 한건찾기(Long id) {
+		User userEntity = userRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("id를 찾을 수 없습니다.");
+		});
+		
+		UserRespDto userRespDto = new UserRespDto(userEntity);
+		return userRespDto;
 	}
 
-	public void 프로파일() {
-
+	@Transactional(readOnly = true)
+	public User 프로파일(Long id) {
+		User userEntity = userRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("id를 찾을 수 없습니다");
+		});
+		
+		return userEntity;
+	}
+	
+	@Transactional(readOnly = true)
+	public User 로그인(UserLoginReqDto userLoginReqDto) {
+		User userEntity = userRepository.findByUsernameAndPassword(userLoginReqDto.getUsername(), userLoginReqDto.getPassword());
+		return userEntity;
 	}
 
-	public void 로그인() {
-
-	}
-
-	public void 회원가입() {
-
+	@Transactional	//데이터베이스의 변경이 일어날 때 @Transactional - 데이터 변경 시 다른애들 동시에 쓰지 못하게 write에 대한 lock을 건다.
+	public User 회원가입(UserJoinReqDto userJoinReqDto) {
+		User userEntity = userRepository.save(userJoinReqDto.toEntity());
+		return userEntity;
 	}
 
 }
