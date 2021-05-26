@@ -22,11 +22,11 @@ public class UserService {
 	//서비스 - 여기서 기능을 구현한다. 데이터베이스 관련 로직을 구현해준다.
 	//JPA Repository는 그냥 API함수들이지 기능이 아니다.
 	
-	private UserRepository userRepository;	//DI
+	private final UserRepository userRepository;	//DI
 	
 	@Transactional(readOnly = true)
 	public List<UserRespDto> 전체찾기() {
-		List<User>  usersEntity= userRepository.findAll();
+		List<User>usersEntity= userRepository.findAll();
 		//forEach
 		List<UserRespDto> userRespDtos = new ArrayList<>();
 		for (User user : usersEntity) {

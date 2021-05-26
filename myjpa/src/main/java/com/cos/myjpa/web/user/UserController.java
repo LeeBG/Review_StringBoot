@@ -30,28 +30,29 @@ public class UserController {
 	private final UserRepository userRepository;
 	private final HttpSession session;				//tomcat이 들고있는 객체 오브젝트는 IoC에 다 들어가 있다.
 	private final UserService userService;
-	
+	//인증만 필요
 	@GetMapping("/user")
 	public CommonRespDto<?> findAll(){
 		return new CommonRespDto<>(1,"성공",userService.전체찾기());
 	}
-	
+	// 인증만 필요
 	@GetMapping("/user/{id}")				//유저한건 찾기
 	public CommonRespDto<?> userInfo(@PathVariable Long id){
 		return new CommonRespDto<>(1, "성공", userService.한건찾기(id));
 	}
+	// 인증만 필요
 	@GetMapping("/user/{id}/post")				//유저한명의 post모두
 	public CommonRespDto<?> profile(@PathVariable Long id){
 		return new CommonRespDto<>(1, "성공", userService.프로파일(id));
 	}
-	
-	
+	// 인증도 필요 없음
 	@PostMapping("/join")	//회원가입  //Json으로 받을것이다.
 	public CommonRespDto<?> join(@RequestBody UserJoinReqDto userJoinReqDto){
 		
 		return new CommonRespDto<>(1,"회원가입 성공",userService.회원가입(userJoinReqDto));
 	}
 	
+	// 인증도 필요 없음
 	@PostMapping("/login")
 	public CommonRespDto<?> login(@RequestBody UserLoginReqDto userLoginReqDto/*,HttpSession session*/){//파라미터로 주입도 가능
 		User userEntity = userService.로그인(userLoginReqDto);
