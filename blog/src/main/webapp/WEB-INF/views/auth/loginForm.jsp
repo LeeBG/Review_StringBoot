@@ -8,7 +8,7 @@
 <body>
 	<h1>로그인 페이지</h1>
 	<hr />
-	<form action="#" method="POST">
+	<form action="/login" method="POST">
 		<input type="text" placeholder="Username" name="username" /><br/>
 		 <input type="password" placeholder="password" name="password" /><br/>
 		<button>로그인</button><br/>

@@ -8,7 +8,7 @@
 <body>
 	<h1>회원가입 페이지</h1>
 	<hr />
-	<form action="#" method="POST">
+	<form action="/join" method="POST">
 		<input type="text" placeholder="Username" name="username" /><br/>
 		 <input type="password" placeholder="Password" name="password" /><br/>
 		<input type="text" placeholder="Email" name="email" /><br/>
