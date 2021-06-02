@@ -21,11 +21,6 @@ public class AuthController {
 		return "redirect:/loginForm"; //만들어 놓은 /loginForm을 get요청하여 재활용한다. - loginForm에 여러개의 로직이 올 수 있기 때문이다.
 	}
 	
-	@PostMapping("/login")
-	public String login() {
-		return null;
-	}
-	
 	//이런식으로 page로 이동하는 것은 RestApi주소방식으로 적는 것이 아니다. 그래서 auth페이지를 따로 만들어주는 것이다.- authController
 	@GetMapping("/loginForm")		// 로그인을 하는 것이아니라 로그인 페이지로 가는 것
 	public String loginForm() {

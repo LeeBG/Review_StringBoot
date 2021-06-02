@@ -23,7 +23,6 @@ public class UserController {
 //		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();//SecurityContextHolder에 접근하는 방법
 //		PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();// principal정보를 받아 principalDetails에 저장하기(casting)
 //		System.out.println(principalDetails.getUser());
-		System.out.println(principalDetails.getUsername());
 		return "User";
 	}
 
