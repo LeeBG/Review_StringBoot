@@ -49,7 +49,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		
+		System.out.println("로그인 완료되어서 세션 만들어짐. 이제 JWT토큰 만들어서 response.header에 응답할 차례");
 	}
 	// 로그인이 완료되면 Authentication객체가 정상적으로 리턴이 되면 자동으로 동작한다.
 	

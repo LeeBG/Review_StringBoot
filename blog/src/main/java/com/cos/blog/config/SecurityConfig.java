@@ -1,24 +1,23 @@
 package com.cos.blog.config;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+
+import com.cos.blog.config.oauth.OAuth2DetailsService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Configuration  //IoC등록
 @EnableWebSecurity // 내가 원래
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	//왜 어댑터를 썼을까? 어댑터가 붙었다는 것은 함수를 걸러준다는 것이다. 우리에게 필요한것 하나만 구현할 것이다.
+	
+	private final OAuth2DetailsService oAuth2DetailsService;
 	
 	@Bean
 	public BCryptPasswordEncoder encode() {
@@ -36,15 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.formLogin()
 		.loginPage("/loginForm")
 		.loginProcessingUrl("/login")	//Spring Security가 /login이라는 주소가 POST방식으로 들어오면 낚아챈다.(get방식은 낚아채지 않는다.)
-		.defaultSuccessUrl("/");		//로그인이 성공하면 /로 가겠습니다.
-//		.successHandler(new AuthenticationSuccessHandler() {
-//			
-//			@Override
-//			public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-//					Authentication authentication) throws IOException, ServletException {
-//				response.sendRedirect("/");
-//				
-//			}
-//		});
+		.defaultSuccessUrl("/")			//로그인이 성공하면 /로 가겠습니다.
+		.and()
+		.oauth2Login()
+		.userInfoEndpoint()
+		.userService(oAuth2DetailsService);
 	}
 }

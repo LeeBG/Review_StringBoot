@@ -1,18 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Blog 로그인</title>
-</head>
+<%@ include file="../layout/header.jsp"%>
+
 <body>
-	<h1>로그인 페이지</h1>
+	<div class="container">
+		<form action="/login" class="was-validated" method="POST">
+			<div class="form-group" style="width: 300px">
+				<label for="username">Username:</label> <input type="text" class="form-control" id="username" placeholder="Enter username"
+					name="username" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>
+			<div class="form-group" style="width: 300px">
+				<label for="password">Password:</label> <input type="password" class="form-control" id="password" placeholder="Enter password"
+					name="password" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>
+			<button type="submit" class="btn btn-primary">로그인</button>
+		</form>
+	</div>
 	<hr />
-	<form action="/login" method="POST">
-		<input type="text" placeholder="Username" name="username" /><br/>
-		 <input type="password" placeholder="password" name="password" /><br/>
-		<button>로그인</button><br/>
-	</form>
-	아직 회원가입을 하지 않으셨나요? <a href="/joinForm">회원가입</a>
+	<div class="container">
+		아직 회원가입을 하지 않으셨나요? <a href="/joinForm">회원가입</a><br/>
+		<a href="/oauth2/authorization/google">구글 로그인</a>
+	</div>
 </body>
 </html>
