@@ -1,5 +1,6 @@
 package com.cos.blog.config.oauth;
 
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.cos.blog.config.auth.PrincipalDetails;
+import com.cos.blog.domain.user.RoleType;
 import com.cos.blog.domain.user.User;
 import com.cos.blog.domain.user.UserRepository;
 
@@ -37,17 +39,21 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 		return processOAuth2User(userRequest, oAuth2User);
 	}
 
-	// 구글 로그인 프로세스
+	// 로그인 프로세스
 	private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) {
 		// 1. 통합 클래스를 생성 - 누군가는 구글로 로그인하고 누군가는 카카오로 로그인할 수 있는데 로그인할 때마다 걔네들이 던지는
 		// attribute정보들이 다 다르다.
-		System.out.println("뭐로 로그인 되었지?" + userRequest.getClientRegistration().getClientName());// Google
+		System.out.println("뭐로 로그인 되었지?" + userRequest.getClientRegistration().getClientName());// Google,Facebook
 		OAuth2UserInfo oAuth2UserInfo = null;
 
 		if (userRequest.getClientRegistration().getClientName().equals("Google")) {// Provider명에 따른 분기문
-			oAuth2UserInfo = new GoogleInfo(oAuth2User.getAttributes());
+			oAuth2UserInfo = new GoogleInfo(oAuth2User.getAttributes());			//google
 		} else if (userRequest.getClientRegistration().getClientName().equals("Facebook")) {
-
+			oAuth2UserInfo = new FacebookInfo(oAuth2User.getAttributes());			//facebook
+		} else if(userRequest.getClientRegistration().getClientName().equals("Naver")) {
+			oAuth2UserInfo = new NaverInfo((Map)(oAuth2User.getAttributes().get("response")));
+		} else if(userRequest.getClientRegistration().getClientName().equals("Kakao")) {
+			oAuth2UserInfo = new KakaoInfo(oAuth2User.getAttributes());
 		}
 
 		// 2 최초(DB에 있는지 여부 확인) - 회원가입+로그인 / 최초가 아닌 경우 : 로그인
@@ -62,6 +68,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 					.username(oAuth2UserInfo.getUsername())
 					.email(oAuth2UserInfo.getEmail())
 					.password(encPassword)
+					.role(RoleType.USER)
 					.build();
 			userEntity = userRepository.save(user);
 			return new PrincipalDetails(userEntity, oAuth2User.getAttributes());

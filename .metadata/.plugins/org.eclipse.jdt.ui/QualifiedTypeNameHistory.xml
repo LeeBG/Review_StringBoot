@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.cos.blog.web.auth.dto.AuthJoinReqDto"/>
-    <fullyQualifiedTypeName name="com.cos.blog.service.AuthService"/>
-    <fullyQualifiedTypeName name="com.cos.blog.domain.user.RoleType"/>
-    <fullyQualifiedTypeName name="java.util.Collection"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.GrantedAuthority"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
-    <fullyQualifiedTypeName name="com.cos.blog.domain.user.UserRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="javax.persistence.Lob"/>
     <fullyQualifiedTypeName name="org.springframework.boot.context.properties.bind.DefaultValue"/>
     <fullyQualifiedTypeName name="org.hibernate.annotations.ColumnDefault"/>
-    <fullyQualifiedTypeName name="com.cos.blog.domain.user.User"/>
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
     <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
     <fullyQualifiedTypeName name="com.cos.blog.service.PostService"/>
@@ -28,7 +13,6 @@
     <fullyQualifiedTypeName name="com.cos.blog.domain.post.Post"/>
     <fullyQualifiedTypeName name="com.cos.blog.web.post.dto.PostSaveReqDto"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
-    <fullyQualifiedTypeName name="com.cos.blog.config.auth.PrincipalDetails"/>
     <fullyQualifiedTypeName name="org.hibernate.event.spi.PostCollectionRecreateEvent"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.AuthenticationSuccessHandler"/>
     <fullyQualifiedTypeName name="org.springframework.data.web.PageableDefault"/>
@@ -51,7 +35,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
-    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.http.SessionCreationPolicy"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
@@ -60,4 +43,21 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"/>
     <fullyQualifiedTypeName name="com.cos.jwtex1.config.jwt.JwtLoginFilter"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.DefaultOAuth2User"/>
+    <fullyQualifiedTypeName name="com.cos.blog.config.oauth.OAuth2DetailsService"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.userinfo.OAuth2UserService"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.OAuth2User"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="com.cos.blog.config.oauth.OAuth2UserInfo"/>
+    <fullyQualifiedTypeName name="com.cos.blog.config.oauth.GoogleInfo"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.cos.blog.domain.user.UserRepository"/>
+    <fullyQualifiedTypeName name="com.cos.blog.config.auth.PrincipalDetails"/>
+    <fullyQualifiedTypeName name="com.cos.blog.domain.user.User"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </qualifiedTypeNameHistroy>

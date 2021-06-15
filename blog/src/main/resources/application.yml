@@ -37,4 +37,44 @@ spring:
             client-secret: BupLD39SXDz8WY0QmB7djF3b
             scope:            - email
             - profile
-                      
+            
+          facebook:
+            client-id: 3868988439867102
+            client-secret: fc42b57a21790a1aefc6899b0e610107
+            scope:
+            - email
+            - public_profile
+          
+          naver:
+            client-id: ohsCOJShgDFqDNHrynYj
+            client-secret: wRvHsk3gLl
+            scope:
+            - id            - email
+            - name
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/naver
+            client-name: Naver
+            
+          kakao: 
+            client-id: b317013da1e70145d5496dbe6cbe6ffd
+            client-secret: R7scDoz7Hfd48ali0CyxXgpuwzJsmIh4
+            scope:
+            - account_email
+            - profile
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-name: Kakao
+            client-authentication-method: POST
+            
+        provider:
+          naver:
+            authorization-uri: https://nid.naver.com/oauth2.0/authorize
+            token-uri: https://nid.naver.com/oauth2.0/token
+            user-info-uri: https://openapi.naver.com/v1/nid/me
+            user-name-attribute: response
+            
+          kakao:
+            authorization-uri:  https://kauth.kakao.com/oauth/authorize
+            token-uri:  https://kauth.kakao.com/oauth/token
+            user-info-uri:  https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id          

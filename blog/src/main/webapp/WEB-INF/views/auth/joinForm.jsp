@@ -16,8 +16,8 @@
 				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>
 			<div class="form-group" style="width: 300px">
-				<label for="email">Email:</label> <input type="email" class="form-control" id="email" placeholder="Enter Email"
-					name="email" required>
+				<label for="email">Email:</label> <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email"
+					required>
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>
@@ -28,7 +28,4 @@
 	<div class="container">
 		이미 회원가입이 되셨나요? <a href="/loginForm">로그인</a>
 	</div>
-
-
-</body>
-</html>
+	<%@ include file="../layout/footer.jsp"%>
