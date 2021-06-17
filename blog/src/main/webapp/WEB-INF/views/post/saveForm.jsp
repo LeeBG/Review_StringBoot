@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="form-group">
-			<textarea rows="" cols="5" class="form-control" name="content" id="summernote"></textarea>
+			<textarea rows="" cols="5" class="form-control" name="content" id="content"></textarea>
 		</div>
 
 		<button type="submit" class="btn btn-primary">글쓰기 완료</button>
@@ -16,7 +16,7 @@
 
 </div>
 <script>
-	$('#summernote').summernote({
+	$('#content').summernote({
 		tabsize : 2,
 		height : 300
 	});
