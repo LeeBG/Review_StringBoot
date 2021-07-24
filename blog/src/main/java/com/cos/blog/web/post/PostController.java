@@ -36,7 +36,6 @@ public class PostController {
 		post.setUser(principalDetails.getUser());
 
 		Post postEntity = postService.글쓰기(post);
-		System.out.println(postEntity.toString());
 
 		if (postEntity == null) {
 			return "post/saveForm";

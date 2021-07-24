@@ -12,9 +12,10 @@
 		</div>
 
 		<button type="submit" class="btn btn-primary">글쓰기 완료</button>
+	</div>
 </form>
 
-</div>
+
 <script>
 	$('#content').summernote({
 		tabsize : 2,

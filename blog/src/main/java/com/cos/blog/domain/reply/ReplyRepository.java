@@ -1,9 +1,9 @@
-package com.cos.blog.domain.post;
+package com.cos.blog.domain.reply;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Integer>{
-	
+public interface ReplyRepository extends JpaRepository<Reply, Integer>{
+
 }
